@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'check_qr_code', to: 'checkins#check_qr_code'
 
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
+  devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
 
   devise_scope :admin do
     get 'sign_in', to: 'devise/sessions#new', as: :new_admin_session

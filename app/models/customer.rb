@@ -19,6 +19,7 @@
 #
 
 class Customer < ApplicationRecord
+  devise :omniauthable, :trackable, omniauth_providers: [:google_oauth2]
   extend Enumerize
   audited
 
@@ -31,6 +32,15 @@ class Customer < ApplicationRecord
 
   def name
     [first_name, last_name].compact.join(' ')
+  end
+
+  def update_from_oauth(auth)
+    auth_info = auth.info
+
+    update_attributes!(
+      first_name: auth_info.first_name,
+      last_name: auth_info.last_name,
+    )
   end
 
   def self.find_user_info(info)
