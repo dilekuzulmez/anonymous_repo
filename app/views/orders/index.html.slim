@@ -1,0 +1,51 @@
+.btn-toolbar
+  .btn-group 
+    = link_to new_order_path, class: 'btn btn-primary' do
+      i.fa.fa-plus
+      |&nbsp; New Order
+hr/
+
+.row
+  .col-md-12.col-sm-12
+    = search_form_for @q, class: 'form-inline' do |f|
+      = f.label :email, class: 'sr-only'
+      = f.search_field :customer_email_cont, id: 'inlineFormInput', class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: 'Email address'
+      = f.label :phone_number, class: 'sr-only'
+      = f.search_field :customer_phone_number_cont, id: 'inlineFormInput', class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: 'Phone number'
+      = f.submit class: 'btn btn-primary'
+  hr
+  .col-md-12.col-sm-12
+    = content_tag :table, class: 'table table-striped' do
+      thead
+        tr
+          = content_tag :th, sort_link(@q, :id)
+          = content_tag :th, sort_link(@q,:customer_id)
+          th = Order.human_attribute_name(:total_after_discount)
+          th = Order.human_attribute_name(:promotion_code)
+          th = Order.human_attribute_name(:paid)
+          th = Order.human_attribute_name(:created_at)
+          th = Order.human_attribute_name(:status)
+          th
+
+      tbody
+        - @orders.each do |order|
+          tr
+            td = link_to order.id, order_path(order)
+            td
+              - if order.customer
+                = link_to order.customer_id, customer_path(order.customer)
+            td = in_currency_format(order.total_after_discount)
+            td = render_discount(order)
+            td = order.paid
+            td = l(order.created_at)
+            td = order.status
+            td
+              = info_button('Details', order_path(order))
+              '&nbsp;
+              = info_button('Logs', logs_order_path(order))
+              '&nbsp;
+              = edit_button(edit_order_path(order))
+
+.container-fluid
+  .text-center
+    = paginate @orders

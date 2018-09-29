@@ -1,0 +1,8 @@
+= simple_form_for(:checkin, url: check_in_path, html: { method: :post, id: 'checkin_form' }) do |f|
+  .row
+    .col-md-6
+      = f.input :match , collection: Match.upcoming.active, selected: Match.upcoming.active.first, id: 'checkin_match'
+      = f.input :code, id: 'checkin_code'
+  .text-center
+    |&nbsp;
+    = link_to 'Check Code', '', class: 'btn btn-success', id: 'check_code'

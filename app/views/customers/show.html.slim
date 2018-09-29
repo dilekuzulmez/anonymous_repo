@@ -1,0 +1,18 @@
+.row
+  .pull-left
+    h3 Customer Details
+  .pull-right
+    .text-right
+      = edit_button(edit_customer_path(@customer))
+      |&nbsp;
+      = link_to 'Points History', points_history_customer_path(@customer), class: 'btn btn-info'
+      |&nbsp;
+      = link_to 'Noti History', notifications_history_customer_path(@customer), class: 'btn btn-info'
+
+
+.row
+  hr/
+
+.row
+  - excluded_keys = %w( push_token access_token )
+  = render partial: 'shared/show', locals: { model: @customer, excluded_keys: excluded_keys }

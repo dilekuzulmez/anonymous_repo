@@ -1,0 +1,19 @@
+.row
+  .col-md-6.col-sm-6
+    = simple_form_for(@customer) do |f|
+      = f.input :email, type: :email
+      = f.input :first_name
+      = f.input :last_name
+      = f.label :phone_number
+      .input-group.form-group
+        span.input-group-addon +84
+        = f.input_field :phone_number, class: 'form-control'
+      = f.input :gender
+      = f.input :birthday, as: :string, input_html: { class: 'birthday_input', value: in_date_format(@customer.birthday) }
+      = f.fields_for :address do |af|
+        = af.input :city
+        = af.input :district
+      .text-right
+        = link_to 'Cancel', customers_path, class: 'btn btn-default'
+        | &nbsp;
+        = f.button :submit, class: 'btn btn-primary'

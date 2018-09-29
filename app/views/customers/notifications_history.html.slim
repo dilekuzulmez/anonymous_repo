@@ -1,0 +1,27 @@
+.row
+  .pull-left
+    h3 = "#{@customer.first_name} #{@customer.last_name}"
+  .pull-right
+    .text-right
+      = edit_button(edit_customer_path(@customer))
+      |&nbsp;
+hr/
+
+.row
+  .panel.panel-info
+    .panel-heading Notification Histories
+    .panel-body
+      table.table.table-striped
+        thead
+          tr
+            th = NotiHistory.human_attribute_name(:title)
+            th = NotiHistory.human_attribute_name(:body)
+            th = NotiHistory.human_attribute_name(:status)
+            th = NotiHistory.human_attribute_name(:created_at)
+        tbody 
+          - @histories.each do |history|
+            tr
+              td = history.title
+              td = history.body
+              td = history.status
+              td = history.created_at

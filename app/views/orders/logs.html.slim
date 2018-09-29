@@ -1,0 +1,27 @@
+= link_to orders_path, class: 'btn btn-primary' do
+  i.fa.fa-arrow-left
+  |&nbsp; Back
+
+hr/
+
+.row
+  .col-md-12.col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th = Order.human_attribute_name(:id)
+          th = Order.human_attribute_name(:time)
+          th = Order.human_attribute_name(:action)
+          th = Order.human_attribute_name(:details)
+
+      tbody
+        - @logs.each do |log|
+          tr
+            td = log.id
+            td = log.created_at
+            td = log.action
+            td = log.audited_changes
+
+.container-fluid
+  .text-center
+    = paginate @logs

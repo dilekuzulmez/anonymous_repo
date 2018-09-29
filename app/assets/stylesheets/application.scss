@@ -1,0 +1,65 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+@import 'bootstrap-datepicker3';
+@import 'metismenu/dist/metisMenu.min.css';
+@import 'font-awesome';
+@import 'select2';
+@import 'select2-bootstrap';
+@import 'summernote/dist/summernote.css';
+@import "bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css";
+@import "datatables.net-bs/css/dataTables.bootstrap.css";
+.flash-message {
+  margin-top: 20px;
+}
+
+table > thead tr > td {
+  font-weight: bold;
+}
+
+.sidebar-profile {
+  width: 20px;
+}
+
+.notification_timestamp {
+  font-size: 12px;
+  font-style: italic;
+}
+
+h3.seat-title {
+  margin-bottom: 30px;
+}
+
+.seat-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.seat-item .seat-btn {
+  width: 100px;
+  margin: 0;
+  height: 100px;
+  padding: 25px;
+  display: inline-block;
+}
+
+.seat-btn .btn {
+  width: 50px;
+  height: 50px;
+}
+
+.seat-item .btn-disable {
+  background: #9e9e9e;
+  border-color: #9e9e9e;
+  color: #ffffff;
+}
+
+.seat-item .seat-row-title {
+  font-size: 18px;
+}
+
+code {
+  font-family: 'monaco';
+}

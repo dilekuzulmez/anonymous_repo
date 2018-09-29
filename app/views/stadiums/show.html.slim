@@ -1,0 +1,17 @@
+.row
+  .pull-left
+    h3 Stadium Details
+  .pull-right
+    .text-right
+      = link_to 'Zones', stadium_zones_path(@stadium), class: 'btn btn-info'
+      |&nbsp;
+      = link_to 'Edit', edit_stadium_path(@stadium), class: 'btn btn-default'
+      |&nbsp;
+
+.row
+  hr/
+
+.row
+  - excluded_keys = %w( team_id seatmap_file_name seatmap_content_type seatmap_file_size seatmap_updated_at logo_file_name logo_content_type logo_file_size logo_updated_at )
+  = render partial: 'shared/show', locals: { model: @stadium, excluded_keys: excluded_keys, custom_hash: show_stadium_custom_hash(@stadium) }
+

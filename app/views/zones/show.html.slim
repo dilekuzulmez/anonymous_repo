@@ -1,0 +1,14 @@
+.row
+  .pull-left
+    h3 Zone Details
+  .pull-right
+    .text-right
+      = edit_button(edit_stadium_zone_path(@stadium, @zone))
+      |&nbsp;
+
+.row
+  hr/
+
+.row
+  - excluded_keys = %w(gate_id stadium_id image_file_name image_content_type image_file_size image_updated_at)
+  = render partial: 'shared/show', locals: { model: @zone, excluded_keys: excluded_keys, custom_hash: show_zone_custom_hash(@zone) }

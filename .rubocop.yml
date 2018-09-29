@@ -1,0 +1,32 @@
+inherit_from: .rubocop_todo.yml
+require: rubocop-rspec
+Documentation:
+  Enabled: false
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
+  Exclude:
+    - db/**/*.rb
+    - Gemfile
+    - config/**/*.rb
+    - Guardfile
+    - lib/tasks/auto_annotate_models.rake
+Metrics/BlockLength:
+  ExcludedMethods:
+    - context
+    - describe
+    - it
+    - shared_examples
+    - shared_examples_for
+    - namespace
+    - draw
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/LetSetup:
+  Enabled: false
+RSpec/AnyInstance:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false

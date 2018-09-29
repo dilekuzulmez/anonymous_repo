@@ -1,0 +1,64 @@
+#wrapper
+  h4
+    code Summary Satistic !
+  .row
+    .col-lg-3.col-md-6
+      .panel.panel-primary
+        .panel-heading
+          .row
+            .col-xs-3
+              i.fa.fa-user.fa-5x
+            .col-xs-9.text-right
+              span.huge.numscroller data-delay="1" data-increment="5" data-max="#{@customer_count}" data-min="0"
+              div Customers!
+        = link_to customers_path
+          .panel-footer
+            span.pull-left View Details
+            span.pull-right
+              i.fa.fa-arrow-circle-right
+            .clearfix
+    .col-lg-3.col-md-6
+      .panel.panel-green
+        .panel-heading
+          .row
+            .col-xs-3
+              i.fa.fa-gamepad.fa-5x
+            .col-xs-9.text-right
+              span.huge.numscroller data-delay="1" data-increment="5" data-max="#{@match_count}" data-min="0"
+              div Matches!
+        = link_to matches_path
+          .panel-footer
+            span.pull-left View Details
+            span.pull-right
+              i.fa.fa-arrow-circle-right
+            .clearfix
+    .col-lg-3.col-md-6
+      .panel.panel-yellow
+        .panel-heading
+          .row
+            .col-xs-3
+              i.fa.fa-shopping-cart.fa-5x
+            .col-xs-9.text-right
+              span.huge.numscroller data-delay="1" data-increment="5" data-max="#{@order_count}" data-min="0"
+              div Orders!
+        = link_to orders_path
+          .panel-footer
+            span.pull-left View Details
+            span.pull-right
+              i.fa.fa-arrow-circle-right
+            .clearfix
+    .col-lg-3.col-md-6
+      .panel.panel-red
+        .panel-heading
+          .row
+            .col-xs-3
+              i.fa.fa-gift.fa-5x
+            .col-xs-9.text-right
+              span.huge.numscroller data-delay="1" data-increment="5" data-max="#{@promotion_count}" data-min="0"
+              div Promotions!
+        = link_to promotions_path
+          .panel-footer
+            span.pull-left View Details
+            span.pull-right
+              i.fa.fa-arrow-circle-right
+            .clearfix

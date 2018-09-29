@@ -1,0 +1,9 @@
+.row
+  .col-md-6
+    = form_tag(bulk_create_orders_path, multipart: true) do
+      = label_tag(:file, "Select Sheet Template File")
+      = file_field_tag :file
+      .row
+        .col-md-4
+          br
+          = button_tag "Import", class: 'btn btn-primary'

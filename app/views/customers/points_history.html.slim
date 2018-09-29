@@ -1,0 +1,35 @@
+.row
+  .pull-left
+    h3 = "#{@customer.first_name} #{@customer.last_name}"
+  .pull-right
+    .text-right
+      = edit_button(edit_customer_path(@customer))
+      |&nbsp;
+hr/
+
+.row
+  .panel.panel-info
+    .panel-heading Point Histories
+    .panel-body
+      table.table.table-striped
+        thead
+          tr
+            th = HistoryPoint.human_attribute_name(:name)
+            th = HistoryPoint.human_attribute_name(:point)
+            th = HistoryPoint.human_attribute_name(:time)
+        tbody 
+          - @histories.each do |history|
+            tr
+              - if !history.survey.blank?
+                  td = link_to "#{history.name}", history.survey
+              
+              - elsif !history.loyalty_point_rule.blank?
+                  td = link_to "#{history.name}", history.loyalty_point_rule
+              
+              - elsif !history.order.blank?
+                  td = link_to "#{history.name}", history.order
+              - else
+                  td = "#{history.name}"
+              end
+              td = history.point
+              td = history.created_at

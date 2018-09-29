@@ -1,0 +1,28 @@
+= link_to new_season_path, class: 'btn btn-primary' do
+  i.fa.fa-plus
+  |&nbsp; New Season
+
+.row
+  .col-md-12.col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th = Season.human_attribute_name(:name)
+          th = Season.human_attribute_name(:duration)
+          th = Season.human_attribute_name(:is_active)
+          th = Season.human_attribute_name(:total_teams)
+          th = Season.human_attribute_name(:total_matches)
+          th
+
+      tbody
+        - @seasons.each do |season|
+          tr
+            td = link_to(season.name, season_path(season))
+            td = season.duration
+            td = season.is_active
+            td = season.teams.count
+            td = link_to(season.matches.count, matches_path(season: season.id))
+            td
+              = link_to 'Edit', edit_season_path(season), class: 'btn btn-default'
+              |&nbsp;
+              = link_to 'Destroy', season_path(season), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

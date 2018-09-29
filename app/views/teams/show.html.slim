@@ -1,0 +1,37 @@
+.row
+  .pull-left
+    h3 Team Details
+  .pull-right
+    .text-right
+      - if @team.home_stadium
+        = link_to 'Home Stadium', stadium_path(@team.home_stadium), class: 'btn btn-info'
+        |&nbsp;
+      = link_to 'Edit', edit_team_path(@team), class: 'btn btn-default'
+      |&nbsp;
+
+.row
+  hr/
+    
+.row
+  - excluded_keys = %w( slug )
+  = render partial: 'shared/show', locals: { model: @team, excluded_keys: excluded_keys }
+
+.row
+  h3 Upcoming Matches
+  hr /
+
+  ul.nav.nav-tabs role="tablist" style="margin-bottom: 20px"
+    li.active role="presentation"
+      a href="#home_matches" role="tab" data-toggle="tab"
+        'Home matches
+        span.badge = @upcoming_home_matches.count
+    li role="presentation"
+      a href="#away_matches" role="tab" data-toggle="tab"
+        'Away matches
+        span.badge = @upcoming_away_matches.count
+
+  .tab-content
+    #home_matches.tab-pane.active role="tabpanel"
+      = render partial: 'shared/matches_table', locals: { matches: @upcoming_home_matches }
+    #away_matches.tab-pane role="tabpanel"
+      = render partial: 'shared/matches_table', locals: { matches: @upcoming_away_matches }

@@ -1,0 +1,15 @@
+.row
+  .pull-left
+    h3 Season Details
+  .pull-right
+    .text-right
+      = link_to 'Edit', edit_season_path(@season), class: 'btn btn-default'
+      |&nbsp;
+      = link_to 'Delete', season_path(@season), class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, method: :delete
+.row
+  hr/
+
+- excluded_keys = %w( season_ticket_team_ids )
+- custom_hash = show_season_custom_hash(@season)
+.row
+  = render partial: 'shared/show', locals: { model: @season, excluded_keys: excluded_keys, custom_hash: custom_hash }

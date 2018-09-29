@@ -1,0 +1,25 @@
+= link_to new_team_path, class: 'btn btn-primary' do
+  i.fa.fa-plus
+  |&nbsp; New Team
+
+hr/
+
+.row
+  .col-md-12.col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th style="width: 30%" Name
+          th style="width: 70%" Description
+          th
+
+      tbody
+        - @teams.each do |team|
+          tr
+            td = link_to team.name, team_path(id: team.slug)
+            td = team.description
+            td
+              = edit_button(edit_team_path(team))
+.container-fluid
+  .text-center
+    = paginate @teams

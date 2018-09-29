@@ -1,0 +1,25 @@
+.row
+  .pull-left
+    h3 Order Details
+  .pull-right
+    .text-right
+      / = info_button('View Match', match_path(@order.match))
+      |&nbsp;
+      = edit_button(edit_order_path(@order))
+      |&nbsp;
+      = delete_button(order_path(@order))
+
+.row
+  - excluded_keys = %w( match_id id customer_id created_by_id created_by_type )
+  - custom_hash = order_custom_hash(@order)
+  = render partial: 'shared/show', locals: { model: @order, excluded_keys: excluded_keys, custom_hash: custom_hash }
+
+.row
+  - order_detail_excluded_keys = %w( qr_code_file_name qr_code_content_type qr_code_file_size qr_code_updated_at unit_price order_id id ticket_type_id match_id)
+  - sort_details = @order.order_details.sort { |x, y| x.match.start_time <=> y.match.start_time }
+  - sort_details.each do |detail|
+    .panel.panel-info
+      .panel-heading Details
+      .panel-body
+        = render partial: 'shared/show', locals: { model: detail, excluded_keys: order_detail_excluded_keys, custom_hash: order_detail_custom_hash(detail) }
+ 

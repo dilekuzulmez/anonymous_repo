@@ -1,0 +1,16 @@
+{
+  "name": "vba-ticketing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@git.siliconstraits.vn:vba/vba-ticketing.git",
+  "author": "Scott Le <scott.lee318@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap-colorpicker": "^2.5.2",
+    "datatables.net-bs": "^1.10.16",
+    "global": "^4.3.2",
+    "metismenu": "^2.7.0",
+    "react-native-cli": "^2.0.1",
+    "summernote": "^0.8.9"
+  }
+}

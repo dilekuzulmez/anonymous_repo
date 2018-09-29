@@ -1,0 +1,49 @@
+.row
+  .pull-left
+    h3 Match Details
+  .pull-right
+    .text-right
+      = link_to 'Ticket Types', match_ticket_types_path(@match), class: 'btn btn-info'
+      |&nbsp;
+      = link_to 'Edit', edit_match_path(@match), class: 'btn btn-default'
+      |&nbsp;
+      = link_to 'Delete', match_path(@match), class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, method: :delete
+.row
+  hr/
+
+- excluded_keys = %w( stadium_id home_team_id away_team_id season_id created_at updated_at )
+- custom_hash = show_match_custom_hash(@match)
+- revenue = @match.orders.includes(:order_details).by_paid(true).map(&:total_after_discount).sum
+.row
+  = render partial: 'shared/show', locals: { model: @match, excluded_keys: excluded_keys, custom_hash: custom_hash }
+
+.row
+  .panel.panel-info
+    .panel-heading = "Orders ----- Total Revenue : #{in_currency_format(revenue)}"
+    .panel-body
+      table.table.table-striped
+        thead
+          tr
+            th = Order.human_attribute_name(:id)
+            th = Order.human_attribute_name(:id_customer)
+            th = Order.human_attribute_name(:customer)
+            th = Order.human_attribute_name(:total_price)
+            th = Order.human_attribute_name(:promotion)
+            th = Order.human_attribute_name(:paid)
+            th = Order.human_attribute_name(:created_at)
+            th
+
+        tbody
+          - @match.order_details.includes(order: [:order_details, :customer]).each do |order_details|
+            tr
+              td = link_to order_details.order.id, order_path(order_details.order)       
+              td
+                - if order_details.order.customer
+                  = link_to order_details.order.customer_id, customer_path(order_details.order.customer)
+              td
+                - if order_details.order.customer
+                  = link_to order_details.order.customer_name, customer_path(order_details.order.customer)
+              td = in_currency_format(order_details.order.total_after_discount)
+              td = render_discount(order_details.order)
+              td = order_details.order.paid
+              td = l(order_details.order.created_at)

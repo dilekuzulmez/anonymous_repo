@@ -1,0 +1,34 @@
+= link_to new_stadium_path, class: 'btn btn-primary' do
+  i.fa.fa-plus
+  |&nbsp; New Stadium
+
+hr/
+
+.row
+  .col-md-12.col-xs-12
+    table.table.table-striped
+      thead
+        tr
+          th = Stadium.human_attribute_name(:name)
+          th = Stadium.human_attribute_name(:address)
+          th = Stadium.human_attribute_name(:contact)
+          th = Stadium.human_attribute_name(:home_team)
+          th
+
+      tbody
+        - @stadiums.each do |stadium|
+          tr
+            td = link_to stadium.name, stadium_path(stadium)
+            td = stadium.address
+            td = stadium.contact
+            td
+              - if stadium.home_team
+                = link_to stadium.home_team_name, team_path(stadium.home_team)
+            td
+              = link_to 'Zones', stadium_zones_path(stadium), class: 'btn btn-info'
+              |&nbsp;
+              = link_to 'Edit', edit_stadium_path(stadium), class: 'btn btn-default'
+
+.container-fluid
+  .text-center
+    = paginate @stadiums

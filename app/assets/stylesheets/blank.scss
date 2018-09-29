@@ -1,0 +1,35 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+body {
+  background-color: #eee;
+  min-height: 100vh;
+}
+
+.login-box {
+  background: #fff;
+  padding: 20px;
+  margin: 25vh auto;
+  text-align: center;
+  letter-spacing: 1px;
+  position: relative;
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.login-box h2 {
+  margin: 20px 0 20px;
+  padding: 0;
+  text-transform: uppercase;
+  color: #4688F1;
+}
+
+.social-button {
+  padding: 12px 0px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.flash-message {
+  margin-top: 20px;
+}

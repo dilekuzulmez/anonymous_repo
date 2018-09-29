@@ -1,0 +1,16 @@
+= simple_form_for(@ticket_type, url: form_target_path) do |f|
+  |&nbsp;
+  = f.input :code
+  .row
+    .col-md-6
+      = f.input :quantity
+    .col-md-6
+      = f.input :price, as: :decimal
+  .row
+    .col-md-4   
+      = f.input :class_type, collection: TicketType.class_types.keys
+  |&nbsp;
+  .text-right
+    = cancel_form_button(match_ticket_types_path(@match))
+    |&nbsp;
+    = f.button :submit, class: 'btn btn-primary'

@@ -1,0 +1,12 @@
+.row
+  .pull-left
+    h3 Promotion Details
+  .pull-right
+    .text-right
+      = link_to 'Edit', edit_promotion_path(@promotion), class: 'btn btn-default'
+      |&nbsp;
+      = delete_button(promotion_path(@promotion))
+
+hr/
+
+= render partial: 'shared/show', locals: { model: @promotion }

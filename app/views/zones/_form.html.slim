@@ -1,0 +1,16 @@
+= simple_form_for(@zone, url: form_target_path) do |f|
+  = f.input :code, required: true
+  = f.input :capacity, required: true
+  = f.input :price, required: true, as: :decimal
+  .row
+    .col-md-6
+      h5 Type
+      = f.select :zone_type, Zone.zone_types.keys
+  .row
+    .col-md-12
+    |&nbsp;
+  = f.input :description
+  .text-right
+    = link_to 'Cancel', stadium_zones_path(stadium_id: params[:stadium_id]), class: 'btn btn-default'
+    |&nbsp;
+    = f.button :submit, class: 'btn btn-primary'

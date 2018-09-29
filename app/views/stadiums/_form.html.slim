@@ -1,0 +1,13 @@
+.row
+  .col-md-6.col-sm-6
+    = simple_form_for(@stadium, url: path) do |f|
+      = f.input :name, required: true
+      = f.input :address
+      = f.input :contact
+      = f.association :home_team, prompt: 'Select team onwer for this stadium', name: :team_id
+      = f.input :seatmap
+      = f.input :logo
+      .text-right
+        = link_to 'Cancel', stadiums_path, class: 'btn btn-default', data: { confirm: 'Are you sure?' }
+        |&nbsp;
+        = f.button :submit, class: 'btn btn-primary'

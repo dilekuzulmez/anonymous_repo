@@ -1,0 +1,7 @@
+$("#matches_table").html("<%= escape_javascript(render partial: 'shared/matches_table', locals: { matches: @matches } ) %>");
+$("#paginator").html("<%= escape_javascript(paginate(@matches, remote: true)) %>");
+$('#data-tables').DataTable({
+      paging: false,
+      info: false,
+      ordering: false
+    });

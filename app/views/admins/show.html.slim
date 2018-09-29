@@ -1,0 +1,8 @@
+h2 Admin Details
+hr/
+
+.row
+  .col-md-2.col-xs-4
+    img.img-thumbnail src=profile_image_url_of(@admin) alt="profile image"
+  .col-md-5.col-xs-8
+    = render partial: 'shared/show', locals: { model: @admin, excluded_keys: ['created_by_id', 'profile_image_url'], custom_hash: show_admin_custom_hash(@admin) }

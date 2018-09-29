@@ -1,0 +1,43 @@
+table.table.table-striped#data-tables
+  thead
+    tr
+      th #
+      th colspan=3 Match
+      th Active
+      th = Match.human_attribute_name(:start_time)
+      th = Match.human_attribute_name(:stadium)
+      th = Match.human_attribute_name(:season)
+      th = Match.human_attribute_name(:round)
+      th Action
+
+  tbody
+    - matches.each_with_index do |match, index|
+      tr
+        td = index + 1
+        - if match.unknown?
+          td colspan=3
+            strong = match.name
+        - else
+          td
+            strong = match.home_team_name
+            |&nbsp;
+            = link_to team_path(match.home_team) do
+              i.fa.fa-external-link
+          td vs
+          td
+            strong = match.away_team_name
+            |&nbsp;
+            = link_to team_path(match.away_team) do
+              i.fa.fa-external-link
+        td = match.active
+        td = l(match.start_time)
+        td = guard_link(match.stadium) { link_to match.stadium_name, stadium_path(match.stadium) }
+        td = guard_link(match.season) { link_to match.season_name, season_path(match.season) }
+        td = match.round
+        td
+          = link_to 'Ticket Types', match_ticket_types_path(match), class: 'btn btn-info'
+          |&nbsp;
+          = link_to 'View', match_path(match), class: 'btn btn-info'
+          |&nbsp;
+          = link_to 'Edit', edit_match_path(match), class: 'btn btn-default'
+  

@@ -1,0 +1,25 @@
+= link_to new_match_path, class: 'btn btn-primary' do
+  i.fa.fa-plus
+  |&nbsp; New Match
+'&nbsp;
+hr/
+
+.row#matches_filter
+  .col-md-12.col-sm-12
+    h3 Matches to view
+    .btn-group data-toggle="buttons"
+      label.btn.btn-default style="width: 120px;" class="#{active_filter_class('upcoming')}"
+        input type="radio" name="match_filter" id="upcoming" autocomplete="off" checked="#{@match_filter == 'upcoming'}"
+          'Upcoming
+      label.btn.btn-default style="width: 120px;" class="#{active_filter_class('playing')}"
+        input type="radio" name="match_filter" id="playing" autocomplete="off" checked="#{@match_filter == 'playing'}"
+          'Playing
+      label.btn.btn-default style="width: 120px;" class="#{active_filter_class('played')}"
+        input type="radio" name="match_filter" id="played" autocomplete="off" checked="#{@match_filter == 'played'}"
+          'Played
+
+.row style="margin-top: 20px"
+  .col-md-12.col-sm-12#matches_table
+    = render partial: 'shared/matches_table', locals: {matches: @matches}
+  #paginator
+    = paginate @matches, remote: true

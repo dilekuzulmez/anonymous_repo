@@ -1,0 +1,11 @@
+.row
+  .col-md-6.col-sm-6
+    = simple_form_for(@team) do |f|
+      = f.input :name, required: true
+      = f.input :code, required: true
+      = f.input :description, as: :text, input_html: {rows: 10}, placeholder: 'Fews sentences that describe the team'
+
+      .text-right
+        = link_to 'Cancel', teams_path, class: 'btn btn-default', data: { confirm: 'Are you sure?' }
+        |&nbsp;
+        = f.button :submit, class: 'btn btn-primary'

@@ -1,0 +1,25 @@
+development: &default
+  database: football_ticket
+  username: postgres
+  password: ''
+  adapter: postgresql
+  encoding: utf8
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: football_ticket_test
+  encoding: utf8
+  username: postgres
+  password: ''
+  timeout: 5000
+
+production: &deploy
+  adapter: postgresql
+  encoding: utf8
+  min_messages: warning
+  pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
+  timeout: 5000
+  url:  <%= ENV.fetch("DATABASE_URL", "") %>
+
+staging: *deploy

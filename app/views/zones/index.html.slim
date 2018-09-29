@@ -1,0 +1,31 @@
+.row
+  .pull-left
+    = link_to new_stadium_zone_path(@stadium), class: 'btn btn-primary' do
+      i.fa.fa-plus
+      |&nbsp; New Zone
+  .pull-right
+    = link_to 'View Stadium', stadium_path(@stadium), class: 'btn btn-default'
+
+.row
+  hr/
+
+.row
+  table.table.table-striped
+    thead
+      tr
+        th = Zone.human_attribute_name(:code)
+        th = Zone.human_attribute_name(:capacity)
+        th = Zone.human_attribute_name(:price)
+        th
+
+    tbody
+      - @zones.each do |zone|
+        tr
+          td = link_to zone.code, stadium_zone_path(@stadium, zone)
+          td = zone.capacity
+          td = in_currency_format(zone.price)
+          td
+            = link_to 'Edit', edit_stadium_zone_path(@stadium, zone), class: 'btn btn-default'
+            |&nbsp;
+            = link_to 'Delete', stadium_zone_path(@stadium, zone), class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, method: :delete
+

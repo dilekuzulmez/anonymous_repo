@@ -1,0 +1,13 @@
+.row
+  .pull-left
+    h3 Ticket Type Details
+  .pull-right
+    .text-right
+      = edit_button(edit_match_ticket_type_path(@match, @ticket_type))
+      |&nbsp;
+.row
+  hr/
+
+.row
+  - locals = { model: @ticket_type, excluded_keys: ['match_id', 'slug'], custom_hash: show_ticket_type_custom_hash(@ticket_type) }
+  = render partial: 'shared/show', locals: locals

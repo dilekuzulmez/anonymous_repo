@@ -1,0 +1,14 @@
+= simple_form_for(@season) do |f|
+  .row
+    .col-md-3
+      = f.input :name
+    .col-md-3
+      = f.input :duration, as: :date_range
+    .col-md-3
+      = f.input :is_active, as: :radio_buttons
+    
+  = f.association :teams, multiple: true
+  |&nbsp;
+
+  .form-actions
+    = f.button :submit

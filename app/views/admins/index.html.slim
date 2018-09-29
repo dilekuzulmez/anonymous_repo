@@ -1,0 +1,32 @@
+.row
+  .col-md-12
+    = link_to new_admin_path, class: 'btn btn-primary' do
+      i.fa.fa-plus
+      '&nbsp;Admin
+hr/
+
+.row
+  .col-md-12.col-xs-12
+    table.table.table-striped
+      thead
+        tr
+          td = Admin.human_attribute_name(:id)
+          td = Admin.human_attribute_name(:email)
+          td = Admin.human_attribute_name(:name)
+          td = Admin.human_attribute_name(:created_at)
+          td = Admin.human_attribute_name(:last_sign_in_at)
+          td
+      tbody
+        - @admins.each do |admin|
+          tr
+            td = link_to(admin.id, admin_path(id: admin.id))
+            td = link_to(admin.email, admin_path(id: admin.id))
+            td = admin.name
+            td = l(admin.created_at)
+            td = admin.last_sign_in_at ? l(admin.last_sign_in_at) : 'N/A'
+            td
+              - unless admin.activated?
+                = link_to 'Edit', edit_admin_path(id: admin.id), class: 'btn btn-default'
+.container-fluid
+  .text-center
+    = paginate @admins

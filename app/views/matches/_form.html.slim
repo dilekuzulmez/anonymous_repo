@@ -1,0 +1,31 @@
+.row
+  .col-md-8.col-sm-8
+    = simple_form_for(@match, html: { class: 'match_form' }) do |f|
+      = f.input :name, placeholder: 'Only fill if match has undetermined competitors'
+      .row
+        .col-md-6
+          = f.association :home_team, input_html: { class: 'home_team_select' }
+        .col-md-6
+          = f.association :away_team
+      .row
+        .col-md-6
+          = f.input :start_time, input_html: { class: 'datetimepicker', value: in_datetimepicker_format(@match.start_time) }, as: :string
+        .col-md-6
+          = f.association :stadium, input_html: { class: 'match_stadium_id typical_select' }
+      .row
+        .col-md-6
+          = f.input :round
+        .col-md-6
+          = f.association :season, input_html: { id: 'selectSeason'}
+      .row
+        .col-md-6
+          = f.input :home_team_score, as: :integer
+        .col-md-6
+          = f.input :away_team_score, as: :integer
+      .row
+        .col-md-6
+          = f.input :active
+      .text-right
+        = link_to 'Cancel', matches_path, class: 'btn btn-default'
+        |&nbsp;
+        = f.button :submit

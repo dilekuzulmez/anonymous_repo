@@ -1,0 +1,43 @@
+.navbar-default.sidebar[role="navigation"]
+  .sidebar-nav.navbar-collapse
+    ul#side-menu.nav
+      li
+        = link_to root_path, class: active_sidebar_class(root_path) do
+          i.fa.fa-dashboard.fa-fw
+          |  Dashboard
+      li
+        = link_to admins_path, class: active_sidebar_class(admins_path) do
+          i.fa.fa-users
+          |  Accounts
+      li
+        = link_to customers_path, class: active_sidebar_class(customers_path) do
+          i.fa.fa-user
+          |  Customers
+      li
+        = link_to seasons_path, class: active_sidebar_class(seasons_path) do
+          i.fa.fa-flag-checkered
+          |  Seasons
+      li
+        = link_to teams_path, class: active_sidebar_class(teams_path) do
+          i.fa.fa-rocket
+          |  Teams
+      li
+        = link_to stadiums_path, class: active_sidebar_class(stadiums_path) do
+          i.fa.fa-university
+          |  Stadiums
+      li
+        = link_to matches_path, class: active_sidebar_class(matches_path) do
+          i.fa.fa-futbol-o
+          |  Matches
+      li
+        = link_to orders_path, class: active_sidebar_class(orders_path) do
+          i.fa.fa-money
+          |  Orders
+      li
+        = link_to promotions_path, class: active_sidebar_class(promotions_path) do
+          i.fa.fa-gift
+          |  Promotions
+      li
+        = link_to checkin_new_path, class: active_sidebar_class(checkin_new_path) do
+          i.fa.fa-book
+          |  Check In Center

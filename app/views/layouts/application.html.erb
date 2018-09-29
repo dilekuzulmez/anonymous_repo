@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="">
+ <meta name="author" content="">
+ <title>Football ticket</title>
+ <%= stylesheet_link_tag :application, media: "all" %>
+ <%= stylesheet_link_tag 'sb-admin-2' %>
+ <%= csrf_meta_tags %>
+</head>
+<body class="<%= body_class %>">
+  <div id="wrapper">
+    <%= render partial: 'application/navbar' %>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <%= render "flashes" -%>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  <%= javascript_include_tag :application %>
+  <%= render "javascript" %>
+  <%= render "analytics" %>
+  <%= render "css_overrides" %>
+</body>
+</html>

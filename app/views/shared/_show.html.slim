@@ -1,0 +1,25 @@
+/ render show page
+/ require locals:
+/ - model: ActiveRecord model
+/ optional locals
+/ - excluded_keys: an array of string, has keys that shouldn't be shown in the page
+/ - custom_hash: hash of key/value that you want to include at the bottom of the table
+
+- excluded_keys = excluded_keys ? excluded_keys : []
+- custom_hash = custom_hash ? custom_hash : {}
+- attributes = model.attributes.reject { |k, v| excluded_keys.include?(k) }.merge(custom_hash)
+- klass = model.class
+
+.row
+  .col-md-12.col-xs-12
+    table.table.table-hover
+      thead
+        tr
+          td Attribute
+          td Value
+      tbody
+        - attributes.each do |key, value|
+          tr
+            td
+              strong = klass.human_attribute_name(key)
+            td = value

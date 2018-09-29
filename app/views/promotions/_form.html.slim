@@ -1,0 +1,21 @@
+= simple_form_for(@promotion) do |f|
+  = f.input :code, input_html: { class: 'text-uppercase' }
+  = f.association :matches, collection: Match.all, label_method: :name_with_time, value_method: :id, multiple: true, input_html: { id: "matches" }
+  .row
+    .col-md-6
+      = f.input :discount_type
+    .col-md-6
+      = f.input :discount_amount
+  .row
+    .col-md-6
+      = f.input :start_date, input_html: { class: 'promotion_date', value: in_date_format(@promotion.start_date)}, as: :string
+    .col-md-6
+      = f.input :end_date, input_html: { class: 'promotion_date', value: in_date_format(@promotion.end_date)}, as: :string
+  = f.input :description
+  = f.input :quantity
+  = f.input :limit_number_used
+  = f.input :active
+  .text-right
+    = link_to 'Cancel', promotions_path, class: 'btn btn-default'
+    |&nbsp;
+    = f.button :submit, class: 'btn btn-primary'

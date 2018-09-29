@@ -1,0 +1,30 @@
+= link_to new_customer_path, class: 'btn btn-primary' do
+  i.fa.fa-plus
+  |&nbsp; New Customer
+'&nbsp;
+hr/
+
+.row
+  .col-md-12.col-xs-12
+    table.table.table-striped
+      thead
+        tr
+          th = Customer.human_attribute_name(:id)
+          th = Customer.human_attribute_name(:name)
+          th = Customer.human_attribute_name(:email)
+          th = Customer.human_attribute_name(:phone_number)
+          th
+
+      tbody
+        - @customers.each do |customer|
+          tr
+            td = customer.id
+            td = link_to customer.name, customer_path(customer)
+            td = customer.email
+            td = customer.phone_number
+
+.row
+  .text-center.col-md-12
+    = paginate @customers
+
+

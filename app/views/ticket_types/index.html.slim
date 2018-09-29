@@ -1,0 +1,32 @@
+.row
+  .pull-left
+    = link_to new_match_ticket_type_path(@match), class: 'btn btn-primary' do
+      i.fa.fa-plus
+      |&nbsp; New Ticket Type
+  .pull-right
+    = link_to 'View Match', match_path(@match), class: 'btn btn-default'
+
+.row
+  hr/
+
+.row
+  table.table.table-striped
+    thead
+      tr
+        th = TicketType.human_attribute_name(:code)
+        th = TicketType.human_attribute_name(:quantity)
+        th = TicketType.human_attribute_name(:price)
+        th = TicketType.human_attribute_name(:available_ticket)
+        th
+
+    tbody
+      - @ticket_types.each do |ticket_type|
+        tr
+          td = link_to ticket_type.code, match_ticket_type_path(@match, ticket_type)
+          td = ticket_type.quantity
+          td = ticket_type.price
+          td = @match.remaining_seats_of_type(ticket_type.code)
+          td
+            = edit_button(edit_match_ticket_type_path(@match, ticket_type))
+            |&nbsp;
+            = delete_button(match_ticket_type_path(@match, ticket_type))

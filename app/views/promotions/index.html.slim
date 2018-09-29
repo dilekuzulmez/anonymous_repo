@@ -1,0 +1,39 @@
+= link_to new_promotion_path, class: 'btn btn-primary' do
+  i.fa.fa-plus
+  |&nbsp; New Promotion
+
+hr/
+
+.row
+  .col-md-12.col-sm-12
+    table.table.table-stripped
+      thead
+        tr
+          th = Promotion.human_attribute_name(:code)
+          th = Promotion.human_attribute_name(:discount_type)
+          th = Promotion.human_attribute_name(:discount_amount)
+          th = Promotion.human_attribute_name(:description)
+          th = Promotion.human_attribute_name(:quantity)
+          th = Promotion.human_attribute_name(:limit_number_used)
+          th
+
+      tbody
+        - @promotions.each do |promotion|
+          tr
+            td
+              = link_to promotion.code, promotion
+              |&nbsp;
+              = active_tag(promotion)
+            td = promotion.discount_type
+            td = promotion.discount_amount
+            td = promotion.description
+            td = promotion.quantity
+            td = promotion.limit_number_used
+            td
+              = link_to 'Edit', edit_promotion_path(promotion), class: 'btn btn-default'
+              |&nbsp;
+              = delete_button(promotion_path(promotion))
+
+.row
+  .col-md-12.text-center
+    = paginate @promotions

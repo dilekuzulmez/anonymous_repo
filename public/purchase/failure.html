@@ -1,0 +1,12 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>Payment Failed! Redirecting to application ...</p>
+    <script>
+      window.setTimeout(function () {
+        window.postMessage('Failure', '*')
+      }, 1000);
+    </script>
+  </body>
+</html>
