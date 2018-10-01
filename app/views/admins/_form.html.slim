@@ -1,11 +1,9 @@
 .row
-  .col-md-2.col-xs-4
-    img.img-thumbnail src=profile_image_url_of(admin) alt="profile image"
   .col-md-5.col-xs-8
     = simple_form_for admin do |f|
       = f.input :email, type: :email, required: true
-      = f.input :first_name, disabled: true
-      = f.input :last_name, disabled: true
+      = f.input :first_name
+      = f.input :last_name
       .text-right
         = link_to 'Cancel', admins_path, class: 'btn btn-default'
         | &nbsp;

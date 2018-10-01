@@ -11,20 +11,14 @@ nav.navbar.navbar-default.navbar-static-top[role="navigation" style="margin-bott
   ul.nav.navbar-top-links.navbar-right
     li.dropdown
       a.dropdown-toggle[data-toggle="dropdown" href="#"]
-        = current_admin&.email
-        |&nbsp;
         = current_admin&.first_name
         |&nbsp;
         i.fa.fa-caret-down
       ul.dropdown-menu.dropdown-user
         li
-          a[href="#"]
+          = link_to edit_admin_registration_path do
             i.fa.fa-user.fa-fw
-            |  User Profile
-        li
-          a[href="#"]
-            i.fa.fa-gear.fa-fw
-            |  Settings
+            |  Change password
         li.divider
         li
           = link_to destroy_admin_session_path, method: :delete do

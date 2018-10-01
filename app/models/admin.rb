@@ -34,7 +34,7 @@
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable
+  devise :database_authenticatable, :registerable
 
   validates_presence_of :email
   validates_format_of :email, with: Devise.email_regexp

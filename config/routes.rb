@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
     registrations: 'admins/registrations'
+  }, path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    edit: '',
+    registration: 'profile'
   }
   devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
 

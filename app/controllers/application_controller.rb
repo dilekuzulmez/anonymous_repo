@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   include SearchHelper
   include ApiHelper
   protect_from_forgery with: :exception
-  # before_action :authenticate_admin!
   rescue_from ActiveRecord::InvalidForeignKey, with: :deny_delete
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::UnpermittedParameters, with: -> { render_error('invalid_params') }
+  before_action :authenticate_admin!, only: [:home]
 
   # rubocop:disable all
 
