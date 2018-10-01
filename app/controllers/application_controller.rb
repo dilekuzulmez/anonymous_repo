@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  layout 'blank', only: [:landing_page]
   include ExceptionsHelper
   include SearchHelper
   include ApiHelper
@@ -15,6 +16,14 @@ class ApplicationController < ActionController::Base
     @order_count = Order.count ; @promotion_count = Promotion.count
   end
 
+  def landing_page
+
+  end
+
+  protected
+    def after_sign_in_path_for(resource)
+      admins_root_path if resource.class.to_s == 'Admin'
+    end
   private
 
   def page_params
