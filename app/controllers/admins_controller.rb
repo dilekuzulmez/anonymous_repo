@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: %i[edit update show]
+  before_action :authenticate_admin!
 
   def index
     @admins = Admin.order(:id).page(page_params)

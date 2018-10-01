@@ -19,6 +19,7 @@
 #  created_by_id      :integer
 #  employee_token     :string
 #  token_expire       :datetime
+#  encrypted_password :string           default(""), not null
 #
 # Indexes
 #

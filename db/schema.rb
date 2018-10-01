@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180927043351) do
     t.integer "created_by_id"
     t.string "employee_token"
     t.datetime "token_expire"
+    t.string "encrypted_password", default: "", null: false
     t.index ["created_by_id"], name: "index_admins_on_created_by_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
   end

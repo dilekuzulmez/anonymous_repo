@@ -19,7 +19,9 @@
 #
 
 class Customer < ApplicationRecord
-  devise :omniauthable, :trackable, omniauth_providers: [:google_oauth2]
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :omniauthable, omniauth_providers: [:google_oauth2]
   extend Enumerize
   audited
 

@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[show edit update destroy points_history notifications_history]
+  before_action :authenticate_admin!
 
   # GET /customers
   def index

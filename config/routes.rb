@@ -4,12 +4,18 @@ Rails.application.routes.draw do
   post 'check_in', to: 'checkins#check_in'
   post 'check_qr_code', to: 'checkins#check_qr_code'
 
-  devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
+  devise_for :admins,
+  path: '/admin',
+  controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
+  }
   devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
 
-  devise_scope :admin do
-    get 'sign_in', to: 'devise/sessions#new', as: :new_admin_session
-    delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_admin_session
+  devise_scope :customer do
+    get 'customer_sign_in', to: 'customers/sessions#new', as: :new_customer_session
+    delete 'customer_sign_out', to: 'customers/sessions#destroy', as: :destroy_customer_session
   end
 
   resources :admins

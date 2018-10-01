@@ -1,6 +1,7 @@
 class ZonesController < ApplicationController
   before_action :set_stadium
   before_action :set_zone, only: %i[show edit update destroy]
+  before_action :authenticate_admin!
 
   # GET /zones
   def index

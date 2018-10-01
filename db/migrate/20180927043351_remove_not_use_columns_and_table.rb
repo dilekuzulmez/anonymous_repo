@@ -55,6 +55,7 @@ class RemoveNotUseColumnsAndTable < ActiveRecord::Migration[5.1]
     add_column :order_details, :hash_key, :string
     add_column :order_details, :is_qr_used, :boolean, default: false
     add_column :order_details, :qr_code_file_name, :string
+    add_column :admins, :encrypted_password, :string, null: false, default: ""
   end
 
   def down

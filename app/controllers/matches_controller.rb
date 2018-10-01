@@ -1,6 +1,7 @@
   # rubocop:disable all
   class MatchesController < ApplicationController
   before_action :set_match, only: %i[show edit update destroy]
+  before_action :authenticate_admin!
 
   ALLOWED_FILTERS = %w[upcoming playing played].freeze
   DEFAULT_FILTER = 'upcoming'.freeze

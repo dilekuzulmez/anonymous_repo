@@ -2,6 +2,7 @@ class TicketTypesController < ApplicationController
   include SeasonsHelper
   before_action :set_match, except: [:season]
   before_action :set_ticket_type, only: %i[show edit update destroy]
+  before_action :authenticate_admin!
 
   def index
     @ticket_types = @match.ticket_types

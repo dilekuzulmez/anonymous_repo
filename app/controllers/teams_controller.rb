@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[show edit update destroy home_stadium]
+  before_action :authenticate_admin!
 
   def export
     csv = ExportCsvService.new(Team).export_order_by_home_team(params[:id], params[:season_id])

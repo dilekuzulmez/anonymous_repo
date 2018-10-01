@@ -19,6 +19,7 @@
 #  created_by_id      :integer
 #  employee_token     :string
 #  token_expire       :datetime
+#  encrypted_password :string           default(""), not null
 #
 # Indexes
 #
@@ -33,7 +34,7 @@
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :omniauthable, :trackable, omniauth_providers: [:google_oauth2]
+  devise :database_authenticatable
 
   validates_presence_of :email
   validates_format_of :email, with: Devise.email_regexp

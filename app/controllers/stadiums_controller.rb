@@ -1,5 +1,6 @@
 class StadiumsController < ApplicationController
   before_action :set_stadium, only: %i[show edit update destroy]
+  before_action :authenticate_admin!
 
   # GET /stadiums
   def index

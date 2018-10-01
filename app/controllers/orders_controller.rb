@@ -1,6 +1,7 @@
 # rubocop:disable Metrics/ClassLength
 class OrdersController < ApplicationController
   include SeasonsHelper
+  before_action :authenticate_admin!
   before_action :set_order, only: %i[show edit update destroy logs]
   after_action :update_order, only: %i[create update]
 

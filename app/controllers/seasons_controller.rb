@@ -2,6 +2,7 @@ class SeasonsController < ApplicationController
   include WithDurationConcern
   include SeasonsHelper
   before_action :set_season, only: %i[show edit update destroy]
+  before_action :authenticate_admin!
 
   # GET /seasons
   def index

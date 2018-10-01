@@ -1,4 +1,6 @@
 class CheckinsController < ApplicationController
+  before_action :authenticate_admin!
+
   def new; end
   def check_in
     return unless params[:checkin].dig(:match).present? && params[:checkin].dig(:code).present?
