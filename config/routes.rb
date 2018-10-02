@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'application#landing_page'
+  get 'results', to: 'matches#results'
   get 'admins_root', to: 'application#home'
   get 'checkin/new', to: 'checkins#new'
   post 'check_in', to: 'checkins#check_in'
