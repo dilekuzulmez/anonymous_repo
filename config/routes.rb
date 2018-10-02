@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'application#home'
+  root 'application#landing_page'
+  get 'admins_root', to: 'application#home'
   get 'checkin/new', to: 'checkins#new'
   post 'check_in', to: 'checkins#check_in'
   post 'check_qr_code', to: 'checkins#check_qr_code'
