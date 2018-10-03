@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show edit update destroy logs]
   after_action :update_order, only: %i[create update]
   layout 'blank', only: [:customer_orders]
-  layout 'login', only: [:show_qr_codes]
   def customer_orders
     @order = Order.new
     set_view_data
@@ -14,6 +13,7 @@ class OrdersController < ApplicationController
   def show_qr_codes
     @order = Order.find_by(id: params[:id])
     return unless @order
+    render layout: "all_blank"
   end
 
   # rubocop:disable all

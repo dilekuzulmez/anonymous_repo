@@ -11,12 +11,10 @@
             <div>Discount : <b><%= in_currency_format(order.total_after_discount - order.total_before_discount) %></b></div>   
             <div style="width: 400px">Booking time : <%= order.created_at.strftime("%d-%m-%Y  %T") %></div>
             <% order.order_details.each_with_index do |detail, i| %>
-              <div style="<%= order.paid ? '' : "margin-bottom: 10px" %>">Match : <b><%= detail.match.name %> (<%= detail.quantity %>) </b></div>
+              <div>Match : <b><%= detail.match.name %> (<%= detail.quantity %>) </b></div>
             <% end %>
 
-            <% if order.paid && order.completed? %>
-              <a class="w3-button w3-black w3-margin-bottom show_qr" style="margin-top: 10px;" data-href="<%= show_qr_codes_order_path(id: order.id) %>">Show QR</a>
-            <% end %>
+            <a class="w3-button w3-black w3-margin-bottom show_qr" style="margin-top: 10px;" data-href="<%= show_qr_codes_order_path(id: order.id) %>">Show QR</a>
           </div>
         </div>
       <% end %>
