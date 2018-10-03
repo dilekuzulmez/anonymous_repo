@@ -1,0 +1,20 @@
+.row
+  .col-md-4.col-sm-4
+  .col-md-4.col-sm-4
+    h4 My profile
+    = simple_form_for(current_customer) do |f|
+      = f.input :email, type: :email, input_html: { readonly: true }
+      = f.input :first_name, input_html: { readonly: true }
+      = f.input :last_name, input_html: { readonly: true }
+      = f.label :phone_number
+      .input-group.form-group
+        span.input-group-addon +84
+        = f.input_field :phone_number, class: 'form-control'
+      = f.input :birthday, as: :string, input_html: { class: 'birthday_input', value: in_date_format(current_customer.birthday) }
+      = f.fields_for :address do |af|
+        = af.input :city, required: false, input_html: { value: current_customer.address['city'] }
+        = af.input :district, required: false, input_html: { value: current_customer.address['district'] }
+        = af.input :ward, required: false, input_html: { value: current_customer.address['ward'] }
+        = af.input :street, required: false, input_html: { value: current_customer.address['street'] }
+        = f.button :submit, 'Update Profile', class: 'btn btn-primary'
+  .col-md-4.col-sm-4
