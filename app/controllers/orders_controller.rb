@@ -1,11 +1,15 @@
 # rubocop:disable Metrics/ClassLength
 class OrdersController < ApplicationController
   include SeasonsHelper
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: [:customer_orders, :create]
   before_action :set_order, only: %i[show edit update destroy logs]
   after_action :update_order, only: %i[create update]
+  layout 'blank', only: [:customer_orders]
+  def customer_orders
+    @order = Order.new
+    set_view_data
+  end
 
-  # GET /orders
   # rubocop:disable all
   def index
     @seasons = Season.active
@@ -44,12 +48,14 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     set_view_data
-    respond_to do |format|
-      if create_service.execute
-        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
+    if create_service.execute
+      if current_admin.present?
+        redirect_to orders_path, notice: 'Order was successfully created.'
       else
-        render_create_new(format)
+        redirect_to root_path, notice: 'Order was successfully created.'
       end
+    else
+      render_create_new(format)
     end
   end
 
@@ -136,7 +142,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.fetch(:order, {}).permit(
-      :home_team_id, :total_price, :customer_id, :shipping_address, :promotion_code,
+      :home_team_id, :total_price, :customer_id, :shipping_address, :phone_number, :promotion_code,
       :purchased_date, :paid, :status, 
       order_details_attributes: %i[id ticket_type_id quantity unit_price match_id _destroy]
     )

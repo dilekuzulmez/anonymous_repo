@@ -17,6 +17,7 @@
 #  purchased_date   :datetime
 #  sale_channel     :string           default("COD")
 #  status           :integer
+#  phone_number     :string
 #
 # Indexes
 #

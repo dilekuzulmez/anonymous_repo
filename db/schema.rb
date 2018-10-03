@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20180927043351) do
     t.datetime "purchased_date"
     t.string "sale_channel", default: "COD"
     t.integer "status"
+    t.string "phone_number"
     t.index ["created_by_id", "created_by_type"], name: "index_orders_on_created_by_id_and_created_by_type"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end

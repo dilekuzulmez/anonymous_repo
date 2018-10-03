@@ -7,10 +7,10 @@
       <% Match.active.where(season_id: Season.active.ids).order(:start_time)&.take(20)&.each do |match| %>
         <div class="w3-third w3-margin-bottom">
           <div class="w3-container w3-white"><br>
-            <p><b><%= match.name %></b></p>
+            <div style="height: 40px;"><b><%= match.name %></b></div>
             <p class="w3-opacity"><%= match.start_time.strftime("%d-%m-%Y  %T") %></p>
             <p><%= match.season.name %></p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+            <%= link_to 'Buy Tickets', customer_orders_path(match_id: match.id), class: "w3-button w3-black w3-margin-bottom" %>
           </div>
         </div>
       <% end %>
