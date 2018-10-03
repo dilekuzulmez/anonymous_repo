@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
   before_action :set_promotion, only: %i[show edit update destroy]
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: [:find]
 
   # GET /promotions
   # GET /promotions.json
