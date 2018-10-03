@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'application#landing_page'
+  get 'my_profile', to: 'customers#my_profile'
   get 'customer_orders', to: 'orders#customer_orders'
   get 'results', to: 'matches#results'
   get 'admins_root', to: 'application#home'

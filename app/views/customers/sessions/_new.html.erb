@@ -1,0 +1,17 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Football Ticket Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= link_to omniauth_authorize_path(:customer, :google_oauth2), class: 'btn btn-danger social-button' do %> 
+            Connect with Google
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

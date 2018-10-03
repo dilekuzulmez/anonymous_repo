@@ -25,6 +25,18 @@
         <%= link_to "HOME", root_path, class: "w3-bar-item w3-button w3-padding-large" %>
         <%= link_to "RESULT", results_path, class: "w3-bar-item w3-button w3-padding-large w3-hide-small" %>
         <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+        <% unless current_customer.present? %>
+          <a data-toggle="modal" data-target="#loginModal" class="w3-bar-item w3-button w3-padding-large w3-right">LOG IN</a>
+        <% else %>
+          <div class="w3-dropdown-hover w3-hide-small w3-right" style="padding-right: 50px;">
+            <button class="w3-padding-large w3-button" title="My info"> MY INFO <i class="fa fa-caret-down"></i></button>     
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+              <a href="#" class="w3-bar-item w3-button">My orders</a>
+              <a href="#" class="w3-bar-item w3-button">My profile</a>
+              <%= link_to 'Log out', destroy_customer_session_path, method: :delete, class: "w3-bar-item w3-button" %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="w3-content" style="max-width:2000px;margin-top:46px">
@@ -74,6 +86,7 @@
   <%= javascript_include_tag :application %>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
+  <%= render "customers/sessions/new" %>
 </body>
 
 <script>
