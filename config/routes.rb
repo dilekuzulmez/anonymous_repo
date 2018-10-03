@@ -63,6 +63,7 @@ Rails.application.routes.draw do
   resources :orders do
     member do
       get :logs
+      get :show_qr_codes
     end
 
     collection do

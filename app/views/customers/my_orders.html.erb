@@ -1,5 +1,5 @@
 <div class="w3-black" id="tour">
-  <div class="w3-container w3-content w3-padding-64" style="max-width:1000px">
+  <div class="w3-container w3-content w3-padding-64" style="max-width:1200px">
     <h2 class="w3-wide w3-center">My orders</h2>
 
     <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
@@ -9,12 +9,34 @@
             <div>Status : <b><%= order.status %> - <%= order.paid ? 'Paid' : 'Unpaid' %></b></div>
             <div>Total Price : <b><%= in_currency_format(order.total_after_discount) %></b></div>
             <div>Discount : <b><%= in_currency_format(order.total_after_discount - order.total_before_discount) %></b></div>   
-            <p class="w3-opacity" style="width: 400px;">Booking time : <%= order.created_at.strftime("%d-%m-%Y  %T") %></p>
-            <%= link_to 'Buy Tickets', '#', class: "w3-button w3-black w3-margin-bottom" %>
+            <div style="width: 400px">Booking time : <%= order.created_at.strftime("%d-%m-%Y  %T") %></div>
+            <% order.order_details.each_with_index do |detail, i| %>
+              <div style="<%= order.paid ? '' : "margin-bottom: 10px" %>">Match : <b><%= detail.match.name %> (<%= detail.quantity %>) </b></div>
+            <% end %>
+
+            <% if order.paid && order.completed? %>
+              <a class="w3-button w3-black w3-margin-bottom show_qr" style="margin-top: 10px;" data-href="<%= show_qr_codes_order_path(id: order.id) %>">Show QR</a>
+            <% end %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
   <div class="w3-center"><%= paginate @orders %></div>
+</div>
+
+<div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ticket QR
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </h5>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,13 +1,19 @@
 # rubocop:disable Metrics/ClassLength
 class OrdersController < ApplicationController
   include SeasonsHelper
-  before_action :authenticate_admin!, except: [:customer_orders, :create]
+  before_action :authenticate_admin!, except: [:customer_orders, :create, :show_qr_codes]
   before_action :set_order, only: %i[show edit update destroy logs]
   after_action :update_order, only: %i[create update]
   layout 'blank', only: [:customer_orders]
+  layout 'login', only: [:show_qr_codes]
   def customer_orders
     @order = Order.new
     set_view_data
+  end
+
+  def show_qr_codes
+    @order = Order.find_by(id: params[:id])
+    return unless @order
   end
 
   # rubocop:disable all

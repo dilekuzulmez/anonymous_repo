@@ -2,6 +2,11 @@ var matchTicketTypesCache = {};
 var seasonTicketTypesCache = {};
 
 $(document).ready(function() {
+  $(document).on('click', '.show_qr', function() {
+    $('#qrModal').modal('show').find('.modal-body').load($(this).data('href'));
+  })  
+  
+
   $(document).on('change', '#match_select', function() {
     var matchId = $(this).val();
     if (!matchId) {

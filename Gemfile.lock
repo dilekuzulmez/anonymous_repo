@@ -421,9 +421,6 @@ GEM
     tilt (2.0.8)
     timecop (0.9.1)
     timeliness (0.3.8)
-    title (0.0.7)
-      i18n
-      rails (>= 3.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -517,7 +514,6 @@ DEPENDENCIES
   spring-commands-rspec
   sprockets (>= 3.0.0)
   timecop
-  title
   uglifier
   validates_timeliness (~> 4.0)
   web-console
