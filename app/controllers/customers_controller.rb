@@ -1,7 +1,10 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[show edit update destroy points_history notifications_history]
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: [:my_profile, :update]
+  before_action :authenticate_customer!, only: [:my_profile]
+  layout 'blank', only: [:my_profile]
 
+  def my_profile; end
   # GET /customers
   def index
     @customers = CustomerSortService.new.sort_by_spending
@@ -41,11 +44,15 @@ class CustomersController < ApplicationController
 
   # PATCH/PUT /customers/1
   def update
-    respond_to do |format|
+    if admin_signed_in?
       if @customer.update(customer_params)
-        format.html { redirect_to customers_path, notice: 'Customer was successfully updated.' }
+        redirect_to customers_path, notice: 'Customer was successfully updated.'
       else
-        format.html { render :edit }
+        render :edit
+      end
+    elsif customer_signed_in?
+      if current_customer.update(customer_params)
+        redirect_to my_profile_path, notice: 'Your profile was successfully updated.'
       end
     end
   end
@@ -95,7 +102,7 @@ class CustomersController < ApplicationController
       :gender,
       :birthday,
       :point,
-      address: %i[city district street]
+      address: %i[city district street ward]
     )
   end
 
