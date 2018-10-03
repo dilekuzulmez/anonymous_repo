@@ -1,10 +1,14 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[show edit update destroy points_history notifications_history]
-  before_action :authenticate_admin!, except: [:my_profile, :update]
-  before_action :authenticate_customer!, only: [:my_profile]
-  layout 'blank', only: [:my_profile]
+  before_action :set_customer, only: %i[show edit update destroy]
+  before_action :authenticate_admin!, except: [:my_profile, :update, :my_orders]
+  before_action :authenticate_customer!, only: [:my_profile, :my_orders]
+  layout 'blank', only: [:my_profile, :my_orders]
 
   def my_profile; end
+  def my_orders
+    @orders = Order.where(customer_id: current_customer.id)
+    @orders = Kaminari.paginate_array(@orders).page(page_params).per(12)
+  end
   # GET /customers
   def index
     @customers = CustomerSortService.new.sort_by_spending
@@ -74,15 +78,6 @@ class CustomersController < ApplicationController
     flash[:info] = import_service
 
     redirect_to import_customers_path
-  end
-
-  def points_history
-    @histories = @customer.history_points.includes(:survey, :loyalty_point_rule, :order)
-                          .order('created_at DESC')
-  end
-
-  def notifications_history
-    @histories = @customer.noti_histories.order('created_at DESC')
   end
 
   private
