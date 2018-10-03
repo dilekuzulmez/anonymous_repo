@@ -6,9 +6,10 @@ module Customers
       auth = request.env['omniauth.auth']
 
       @customer = Customer.find_or_create_by(email: auth.info.email)
-
-      @customer.update_from_oauth(auth)
-      sign_in_and_redirect @customer, event: :authentication
+      if @customer.update_from_oauth(auth)
+        flash[:info] = "You have logged in"
+        sign_in_and_redirect @customer, event: :authentication
+      end
     end
 
     def failure
